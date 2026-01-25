@@ -1,0 +1,14 @@
+The goal of this project is to create a parameterized RTL cache simulator adaptable to various replacement policies that leverage low power optimizations.
+The group focused on four main pillars to execute the project successfully. Those pillars are cache datapath, replacement policy, power metrics, and testbenches.
+
+Action Items:
+We need to align on the following cache specifications: cache size, line size, Associativity, etc.
+We also need to decide the address fields: Tag, Index, & Offset.
+The cache datapath we need to implement: tag array, data array, valid+dirty bits and hit detection.
+We need to also implement a FSM to handle the misses.
+We need to also have a baseline replacement policy. This way with a baseline we can calulate the deltas from baseline -> low power optimized cache.
+
+Power optimizations are the meat and potatoes. We need to capture some metrics for a baseline LRU and metrics for an optimized datapath with an LRU. Data movement and transistor toggling are very costly in terms of power so some power proxies we could use are access and some optimizations we can do are to disable LRU update on WB and avoid unncessary toggling and mem access/tag comparisons.}
+
+We will need to generate testbenches to capture hit/miss rates, evictions and also some way to capture power.
+Tools we will need to use are Vivado (assuming we are using Verilog), Github, and Latex.
