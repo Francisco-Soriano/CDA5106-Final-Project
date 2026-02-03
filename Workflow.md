@@ -1,4 +1,4 @@
-#Full Project Flow: Classic Cache → RTL + Power Proxies
+# Full Project Flow: Classic Cache → RTL + Power Proxies
 ##Step 1: Set up gem5 Classic Cache Environment
 
 Clone gem5 repository
