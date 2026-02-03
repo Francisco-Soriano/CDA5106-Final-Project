@@ -10,8 +10,8 @@ This project executes **low-power cache design techniques** by starting from an 
 - Translate the simulator architecture into a **parameterized Verilog RTL cache**.
 - Implement a **baseline cache replacement policy** (e.g., LRU).
 - Introduce **low-power optimizations** to the cache datapath and control logic.
-- Quantitatively compare baseline and optimized designs using **power proxy metrics**.
-- Optionally evaluate how the same optimization behaves across **different cache architectures**.
+- Quantitatively compare baseline and optimized designs using **power proxy metrics**. (Using OS tools, such as Yosys, OpenRoad, iVerilog, etc.)
+- ~~Optionally evaluate how the same optimization behaves across **different cache architectures**.~~
 
 ---
 
@@ -41,7 +41,7 @@ Power evaluation focuses on **activity-based proxies** rather than absolute powe
   - Writebacks
 
 ### Replacement Policy
-- **Baseline**: Least Recently Used (LRU)
+- **Baseline**: Least Recently Used (LRU) / FIFO
 - **Optimized variants**: Power-aware modifications to reduce unnecessary activity
 
 ---
@@ -78,6 +78,8 @@ Results are compared between:
 
 ## Tools and Technologies
 - **iVerilog** – Verilog design & simulation
+- **Yosys** - Verilog synthesis
+- **OpenROAD** - P&R Tool
 - **GitHub** – Version control and reference cache simulators
 - **LaTeX** – Abstract, documentation and final report
 
@@ -94,17 +96,17 @@ Results are compared between:
 
 ## Stretch Goals
 - Support for additional replacement policies
-- Multi-level cache extensions
 - Integration with power estimation tools
-- Cross-architecture comparison of power optimizations
+- ~~Cross-architecture comparison of power optimizations~~
 
 ---
 
 ## Authors
-Jordan Merkel, Alexander Garcia, Julian Vasquez, Francisco Soriano
+Jordan Merkel, Alexander Garcia, Julian Vazquez, Francisco Soriano
 
 ---
 
 ## References
 - Open-source cache simulator repositories
 - Academic literature on low-power cache design
+- Open source tool documentation
