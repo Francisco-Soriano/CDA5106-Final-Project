@@ -1,0 +1,57 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:03:00 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[0] (input port clocked by clk)
+  Endpoint: sum[59] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 r
+  Oper[0] (in)                                     0.00      1.05 r
+  ctmTdsLR_3_4435/Y (OR2X1_LVT)                    0.05      1.10 r
+  ctmTdsLR_2_4434/Y (OR2X4_LVT)                    0.05      1.15 r
+  ctmTdsLR_1_4433/Y (INVX16_LVT)                   0.05      1.20 f
+  ctmi_3015/Y (NAND2X0_RVT)                        0.04      1.24 r
+  A3635/Y (AND3X1_LVT)                             0.05      1.29 r
+  A3637/Y (OR2X2_RVT)                              0.05      1.34 r
+  A3639/Y (AO21X1_LVT)                             0.07      1.40 r
+  ctmi_2557/Y (AO21X1_LVT)                         0.06      1.47 r
+  ctmi_2787/Y (AO21X1_LVT)                         0.06      1.53 r
+  A4145/Y (AOI21X2_LVT)                            0.07      1.60 f
+  HFSINV_874_4374/Y (INVX8_LVT)                    0.05      1.65 r
+  A3665/Y (AO21X1_RVT)                             0.06      1.71 r
+  A3449/Y (AO21X1_LVT)                             0.06      1.77 r
+  ctmTdsLR_2_4417/Y (AO21X1_LVT)                   0.04      1.81 r
+  ctmTdsLR_3_4418/Y (AO21X2_LVT)                   0.04      1.85 r
+  sum[59] (out)                                    0.00      1.85 r
+  data arrival time                                          1.85
+
+  clock clk (rise edge)                            2.12      2.12
+  clock network delay (ideal)                      0.50      2.62
+  clock uncertainty                               -0.20      2.42
+  output external delay                           -0.60      1.82
+  data required time                                         1.82
+  ------------------------------------------------------------------------
+  data required time                                         1.82
+  data arrival time                                         -1.85
+  ------------------------------------------------------------------------
+  slack (VIOLATED)                                          -0.03
+
+
+1

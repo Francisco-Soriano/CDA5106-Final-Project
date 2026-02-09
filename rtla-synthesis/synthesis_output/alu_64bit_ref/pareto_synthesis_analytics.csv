@@ -1,0 +1,18 @@
+Phase,Duration (seconds),Details
+Min Area Search,631,Min area: 2504.84 um^2 at 4.99025390625 ns
+Min Delay Search,710,Min delay constraint: 2.22290578842 ns
+Pareto Point 1,71,Clock period: 2.22290578842 ns
+Pareto Point 2,66,Clock period: 2.42057351113 ns
+Pareto Point 3,64,Clock period: 2.61824123383 ns
+Pareto Point 4,64,Clock period: 2.81590895653 ns
+Pareto Point 5,61,Clock period: 3.01357667923 ns
+Pareto Point 6,63,Clock period: 3.21124440193 ns
+Pareto Point 7,62,Clock period: 3.40891212464 ns
+Pareto Point 8,62,Clock period: 3.60657984734 ns
+Pareto Point 9,63,Clock period: 3.80424757004 ns
+Pareto Point 10,62,Clock period: 4.00191529274 ns
+Pareto Point 11,62,Clock period: 4.19958301544 ns
+Pareto Point 12,63,Clock period: 4.39725073814 ns
+Pareto Point 13,62,Clock period: 4.59491846085 ns
+Pareto Point 14,63,Clock period: 4.79258618355 ns
+Pareto Point 15,61,Clock period: 4.99025390625 ns

@@ -1,0 +1,58 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:04:47 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[1] (input port clocked by clk)
+  Endpoint: sum[56] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 f
+  Oper[1] (in)                                     0.00      1.05 f
+  A2697/Y (INVX32_LVT)                             0.03      1.08 r
+  A2698/Y (NOR3X2_LVT)                             0.08      1.16 f
+  HFSBUF_723_2944/Y (NBUFFX16_LVT)                 0.05      1.21 f
+  ctmi_1748/Y (AOI21X1_RVT)                        0.08      1.29 r
+  A2740/Y (INVX1_RVT)                              0.02      1.30 f
+  A2741/Y (OR2X1_LVT)                              0.05      1.36 f
+  A2742/Y (AND2X1_LVT)                             0.05      1.41 f
+  ctmi_1751/Y (AND2X2_LVT)                         0.05      1.46 f
+  ctmi_1771/Y (AND2X1_RVT)                         0.05      1.51 f
+  ctmi_1770/Y (AOI21X2_LVT)                        0.08      1.58 r
+  HFSINV_673_2921/Y (INVX8_LVT)                    0.04      1.62 f
+  ctmTdsLR_2_2986/Y (AND2X1_LVT)                   0.05      1.67 f
+  ctmTdsLR_1_2985/Y (OR2X4_LVT)                    0.06      1.73 f
+  A2868/Y (NAND2X0_RVT)                            0.04      1.77 r
+  ctmTdsLR_1_3017/Y (AND2X1_LVT)                   0.04      1.81 r
+  A2832/Y (MUX21X2_LVT)                            0.07      1.88 f
+  sum[56] (out)                                    0.00      1.88 f
+  data arrival time                                          1.88
+
+  clock clk (rise edge)                            2.22      2.22
+  clock network delay (ideal)                      0.50      2.72
+  clock uncertainty                               -0.20      2.52
+  output external delay                           -0.60      1.92
+  data required time                                         1.92
+  ------------------------------------------------------------------------
+  data required time                                         1.92
+  data arrival time                                         -1.88
+  ------------------------------------------------------------------------
+  slack (MET)                                                0.05
+
+
+1

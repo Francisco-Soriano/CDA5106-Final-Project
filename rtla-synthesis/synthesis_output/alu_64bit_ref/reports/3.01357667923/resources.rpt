@@ -1,0 +1,29 @@
+****************************************
+Report : report_resources
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:09:02 2026
+****************************************
+------------------------
+ Design : alu_64bit_ref 
+------------------------
+
+ Cell : DP_OP_14_43174_27450_J1 
+--------------------------------
+
+   Module                :  DP_OP_14_43174_27450_J167273_P0_D0 
+   Current Implementation:  str(area,speed)                    
+   Contained Operations  :  add_9(alu_64bit_ref.sv:9)          
+                            add_9_2(alu_64bit_ref.sv:9)        
+   Has Tree              :  No                                 
+
+                 Data                                                       
+   Var     Type  Class     Width  Expression                                
+  --------------------------------------------------------------------------
+   PI_0    PI    Unsigned     64                                            
+   PI_1    PI    Unsigned     64                                            
+   PI_2    PI    Unsigned      1                                            
+   PO_0    PO    Unsigned     64  PI_0 + PI_1 + PI_2 (alu_64bit_ref.sv:9)   
+  --------------------------------------------------------------------------
+
+1

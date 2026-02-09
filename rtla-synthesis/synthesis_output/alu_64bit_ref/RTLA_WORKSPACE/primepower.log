@@ -1,0 +1,236 @@
+set_app_var sh_continue_on_error true
+true
+set_app_var power_enable_rtl_analysis true
+Information: Checked out license 'PrimePower-RTL' (PT-019)
+true
+source RTLA_WORKSPACE/conf_func.ss0p95v125c.tcl
+1
+1
+::pprtl::read_design_data
+Warning: Unable to find "RTLA_RUN_COMPLETED" in "RTLA_WORKSPACE/conf.tcl". Check tool versions.
+Information: Detected a workspace "RTLA_WORKSPACE" created by an older build (pre V-2023.12). Error checking will be limited.
+
+Information : PT Additional Black-Box Check set to true
+
+setConf REF_LIBS [list   saed32hvt_c.ndm   saed32hvt_dlvl_v.ndm   saed32hvt_ulvl_v.ndm   saed32io_wb_5v.ndm   saed32lvt_c.ndm   saed32lvt_dlvl_v.ndm   saed32lvt_ulvl_v.ndm   saed32pll_5v.ndm   saed32rvt_c.ndm   saed32rvt_dlvl_v.ndm   saed32rvt_ulvl_v.ndm   /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/SRAM_LIB_WORKSPACE_macros.ndm ]
+lappend ::search_path .
+lappend ::search_path /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/SRAM_LIB_WORKSPACE_macros.ndm
+lappend ::search_path /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm
+set ::link_library *
+lappend ::link_library *
+lappend ::link_library saed32hvt_ss0p95v125c
+lappend ::link_library saed32hvt_dlvl_ss0p75v125c_i0p95v
+lappend ::link_library saed32hvt_dlvl_ss0p7v125c_i0p95v
+lappend ::link_library saed32hvt_dlvl_ss0p95v125c_i0p95v
+lappend ::link_library saed32hvt_ulvl_ss0p95v125c_i0p75v
+lappend ::link_library saed32hvt_ulvl_ss0p95v125c_i0p7v
+lappend ::link_library saed32hvt_ulvl_ss0p95v125c_i0p95v
+lappend ::link_library saed32io_wb_ss0p95v125c_2p25v
+lappend ::link_library saed32lvt_ss0p95v125c
+lappend ::link_library saed32lvt_dlvl_ss0p75v125c_i0p95v
+lappend ::link_library saed32lvt_dlvl_ss0p7v125c_i0p95v
+lappend ::link_library saed32lvt_dlvl_ss0p95v125c_i0p95v
+lappend ::link_library saed32lvt_ulvl_ss0p95v125c_i0p75v
+lappend ::link_library saed32lvt_ulvl_ss0p95v125c_i0p7v
+lappend ::link_library saed32lvt_ulvl_ss0p95v125c_i0p95v
+lappend ::link_library saed32pll_ss0p95v125c_2p25v
+lappend ::link_library saed32rvt_ss0p95v125c
+lappend ::link_library saed32rvt_dlvl_ss0p75v125c_i0p95v
+lappend ::link_library saed32rvt_dlvl_ss0p7v125c_i0p95v
+lappend ::link_library saed32rvt_dlvl_ss0p95v125c_i0p95v
+lappend ::link_library saed32rvt_ulvl_ss0p95v125c_i0p75v
+lappend ::link_library saed32rvt_ulvl_ss0p95v125c_i0p7v
+lappend ::link_library saed32rvt_ulvl_ss0p95v125c_i0p95v
+lappend ::link_library RAM_1RW_128x20_max_0d95_125_ccs
+lappend ::link_library RAM_1RW_128x8_max_0d95_125_ccs
+lappend ::link_library RAM_1RW_64x12_max_0d95_125_ccs
+lappend ::link_library RAM_1RW_64x14_max_0d95_125_ccs
+# process_label : ss
+# process : 0.99
+# voltage : 0.9500
+# temperature : 125.0000
+setConf MODE "func"
+setConf CORNER "ss0p95v125c"
+1
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32hvt_c.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32hvt_dlvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32hvt_ulvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32io_wb_5v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32lvt_c.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32lvt_dlvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32lvt_ulvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32pll_5v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32rvt_c.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32rvt_dlvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/saed32rvt_ulvl_v.ndm
+Reading CLIB file /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/ndm/SRAM_LIB_WORKSPACE_macros.ndm
+Information: read_ndm /home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/alu_64bit_ref.dlib:alu_64bit_ref.design
+Information: current_design won't return any data before link (DES-071)
+Information: Loading NDM design 'alu_64bit_ref'. (PTNDM-003)
+Linking design alu_64bit_ref...
+Information: 272 (92.52%) library cells are unused in library saed32hvt_ss0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32hvt_ss0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32hvt_ff0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32hvt_ff0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32hvt_ff1p16v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32hvt_ff1p16vn40c..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p75v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p75vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p7v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p7vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p85v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p85vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p95v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff0p95vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32hvt_dlvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95v125c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95v125c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95vn40c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95vn40c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16v125c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16vn40c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32hvt_ulvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 60 (100.00%) library cells are unused in library saed32io_wb_ss0p95v125c_2p25v..... (LNK-045)
+Information: 60 (100.00%) library cells are unused in library saed32io_wb_ss0p95vn40c_2p25v..... (LNK-045)
+Information: 60 (100.00%) library cells are unused in library saed32io_wb_ff1p16v125c_2p75v..... (LNK-045)
+Information: 60 (100.00%) library cells are unused in library saed32io_wb_ff1p16vn40c_2p75v..... (LNK-045)
+Information: 288 (97.96%) library cells are unused in library saed32lvt_ss0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32lvt_ss0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32lvt_ff0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32lvt_ff0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32lvt_ff1p16v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32lvt_ff1p16vn40c..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p75v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p75vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p7v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p7vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p85v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p85vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p95v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff0p95vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32lvt_dlvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95v125c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95v125c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95vn40c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95vn40c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16v125c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16vn40c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32lvt_ulvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library saed32pll_ss0p95v125c_2p25v..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library saed32pll_ss0p95vn40c_2p25v..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library saed32pll_ff1p16v125c_2p75v..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library saed32pll_ff1p16vn40c_2p75v..... (LNK-045)
+Information: 278 (94.56%) library cells are unused in library saed32rvt_ss0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32rvt_ss0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32rvt_ff0p95v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32rvt_ff0p95vn40c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32rvt_ff1p16v125c..... (LNK-045)
+Information: 294 (100.00%) library cells are unused in library saed32rvt_ff1p16vn40c..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p75v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p75vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p7v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p7vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p85v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p85vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p95v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff0p95vn40c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 24 (100.00%) library cells are unused in library saed32rvt_dlvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95v125c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95v125c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95vn40c_i0p75v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95vn40c_i0p7v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ss0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff0p95v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff0p95vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16v125c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16v125c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16v125c_i1p16v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16vn40c_i0p85v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16vn40c_i0p95v..... (LNK-045)
+Information: 12 (100.00%) library cells are unused in library saed32rvt_ulvl_ff1p16vn40c_i1p16v..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x20_max_0d95_125_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x20_max_0d95_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x20_min_1d16_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x8_max_0d95_125_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x8_max_0d95_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_128x8_min_1d16_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x12_max_0d95_125_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x12_max_0d95_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x12_min_1d16_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x14_max_0d95_125_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x14_max_0d95_m40_ccs..... (LNK-045)
+Information: 1 (100.00%) library cells are unused in library RAM_1RW_64x14_min_1d16_m40_ccs..... (LNK-045)
+Information: total 7016 library cells are unused (LNK-046)
+Design 'alu_64bit_ref' was successfully linked.
+Information: There are 1177 leaf cells, ports, hiers and 1112 nets in the design (LNK-047)
+Information: read upf RTLA_WORKSPACE/alu_64bit_ref.upf
+Information: read constraints
+Warning: Creating virtual clock named 'clk' with no sources. (UITE-121)
+Error: Nothing matched for to_list (SEL-005)
+Error: Nothing matched for from_list (SEL-005)
+Warning: Nothing implicitly matched 'VDD' (SEL-003)
+Warning: Nothing implicitly matched 'VSS' (SEL-003)
+Information: read parasitics
+Information: Log for 'read_parasitics command' will be generated in 'parasitics_command.log'. (PARA-107)
+1
+::pprtl::read_name_mapping
+Information : Reading Non-Essential Name Map File (RTLA_WORKSPACE/alu_64bit_ref.saifmap) 
+Warning: Unable to find "BLOCK_INSTANCES" in "RTLA_WORKSPACE/conf.tcl". Check tool versions.
+1
+::pprtl::read_activity_files
+Warning: No activity file to read
+1
+::pprtl::compute_metrics
+Information: Using automatic max wire load selection group 'predcaps'. (ENV-003)
+Information: Using automatic min wire load selection group 'predcaps'. (ENV-003)
+Information: Building multi voltage information for entire design. (MV-022)
+Warning: Neither event file or switching activity data present for power estimation. The command will propagate switching activity values for power calculation.  (PWR-246)
+Information: Running switching activity propagation with 4 threads!
+Information: Running averaged power analysis... (PWR-601)
+Information: Running power calculation with 4 threads. (PWR-602)
+Information: Testing PowerDB RTLA_WORKSPACE/Power_func.ss0p95v125c.pdb
+Information: Writing activity file of current scenario func.ss0p95v125c in workspace RTLA_WORKSPACE
+Information: PrimePower RTL run completed
+quit
+Suppressed Messages Summary:
+Id          Severity      Occurrences   Suppressed
+-------------------------------------------------------------------------------
+SEL-005     Error                   4            2
+SEL-004     Warning                 2            2
+Total 2 types of messages are suppressed
+Maximum memory usage for this session: 2802.56 MB
+CPU usage for this session: 9 seconds 
+Elapsed time for this session: 8 seconds
+Diagnostics summary: 3 errors, 4 warnings, 132 informationals
+
+Thank you for using pwr_shell!

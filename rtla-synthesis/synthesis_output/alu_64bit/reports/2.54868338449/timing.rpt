@@ -1,0 +1,69 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:10:47 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[2] (input port clocked by clk)
+  Endpoint: sum[48] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 f
+  Oper[2] (in)                                     0.00      1.05 f
+  A271/Y (INVX16_LVT)                              0.03      1.08 r
+  A1091/Y (AND3X2_LVT)                             0.05      1.13 r
+  HFSBUF_188_1168/Y (NBUFFX16_LVT)                 0.05      1.18 r
+  RS_OP_20_49142_44100_J1/ctmi_1/Y (OR2X2_LVT)     0.05      1.23 r
+  HFSBUF_390_1164/Y (NBUFFX32_LVT)                 0.05      1.28 r
+  RS_OP_20_49142_44100_J1/ctmi_56/Y (AO22X1_LVT)   0.07      1.34 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_481/Y (OR2X1_LVT)
+                                                   0.05      1.40 r
+  ctmi_959/Y (INVX1_RVT)                           0.01      1.41 f
+  ctmi_957/Y (OAI21X2_LVT)                         0.09      1.49 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_502/Y (AO21X1_LVT)
+                                                   0.06      1.56 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_498/Y (AO221X1_LVT)
+                                                   0.07      1.63 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_423/Y (AO21X2_LVT)
+                                                   0.05      1.67 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_422/Y (AO21X1_LVT)
+                                                   0.06      1.74 r
+  HFSBUF_610_1159/Y (NBUFFX16_LVT)                 0.05      1.78 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_708/Y (AO21X1_LVT)
+                                                   0.06      1.84 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_707/Y (AO21X1_LVT)
+                                                   0.06      1.91 r
+  RS_OP_20_49142_44100_J1/DP_OP_23_2872_4207_J0/ctmi_704/Y (XNOR2X2_RVT)
+                                                   0.08      1.98 r
+  ctmi_3951/Y (AO222X1_LVT)                        0.10      2.08 r
+  ctmi_3949/Y (OR2X2_LVT)                          0.05      2.13 r
+  sum[48] (out)                                    0.00      2.13 r
+  data arrival time                                          2.13
+
+  clock clk (rise edge)                            2.55      2.55
+  clock network delay (ideal)                      0.50      3.05
+  clock uncertainty                               -0.20      2.85
+  output external delay                           -0.60      2.25
+  data required time                                         2.25
+  ------------------------------------------------------------------------
+  data required time                                         2.25
+  data arrival time                                         -2.13
+  ------------------------------------------------------------------------
+  slack (MET)                                                0.12
+
+
+1

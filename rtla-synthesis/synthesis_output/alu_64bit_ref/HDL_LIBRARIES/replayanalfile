@@ -1,0 +1,250 @@
+set_app_options -name hdlin.gensys.enable_info -value true
+set_app_options -list hdlin.extract_rtl_constructs_xinfo true hdlin.gensys.enable_phase2 true hdlin.ff_assign_xinfo true hdlin.ff_assign_xinfo_bit_level true
+set_app_options -list hdlin.extract_rtl_constructs_xinfo true hdlin.gensys.enable_phase2 true hdlin.ff_assign_xinfo true hdlin.ff_assign_xinfo_bit_level true
+set_app_options -list hdlin.extract_rtl_constructs_xinfo true hdlin.gensys.enable_phase2 true hdlin.ff_assign_xinfo true hdlin.ff_assign_xinfo_bit_level true
+set_app_options -list hdlin.extract_rtl_constructs_xinfo true hdlin.gensys.enable_phase2 true hdlin.ff_assign_xinfo true hdlin.ff_assign_xinfo_bit_level true
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref
+set search_path [list . /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/syn_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/dw/sim_ver /home/net/synopsys/installs/rtla/U-2022.12-SP6/libraries/syn . data data/rtl data/ndm scripts data/constraints ] 
+analyze -format sverilog  "./data/rtl/alu_64bit_ref.sv" 
+C/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref
+/home/net/jo045021/sp26/rtl-opt-proj/yosys-internal/rtla-synthesis/synthesis_output/alu_64bit_ref/data/rtl/alu_64bit_ref.sv
+alu_64bit_ref
+elaborate alu_64bit_ref
+set_top_module alu_64bit_ref

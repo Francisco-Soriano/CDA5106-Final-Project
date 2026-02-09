@@ -1,0 +1,121 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:25:16 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[1] (input port clocked by clk)
+  Endpoint: sum[62] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 f
+  Oper[1] (in)                                     0.00      1.05 f
+  A461/Y (OR3X4_RVT)                               0.05      1.10 f
+  HFSINV_221_1416/Y (INVX8_LVT)                    0.06      1.16 r
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_474/Y (OR2X1_LVT)
+                                                   0.05      1.21 r
+  HFSBUF_378_1413/Y (NBUFFX8_RVT)                  0.05      1.26 r
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_768/Y (AO22X1_LVT)
+                                                   0.07      1.32 r
+  ctmi_1302/Y (NOR2X0_RVT)                         0.06      1.38 f
+  ctmi_1305/Y (INVX1_RVT)                          0.02      1.40 r
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_760/Y (NAND2X0_RVT)
+                                                   0.03      1.43 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_773/Y (OR2X1_HVT)
+                                                   0.05      1.47 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_745/Y (OA221X1_RVT)
+                                                   0.08      1.55 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_681/Y (OA221X2_LVT)
+                                                   0.08      1.63 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_562/Y (OA221X2_LVT)
+                                                   0.08      1.70 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_561/Y (OA221X1_HVT)
+                                                   0.08      1.78 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_560/Y (OA21X1_LVT)
+                                                   0.06      1.84 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_555/Y (OA21X1_LVT)
+                                                   0.06      1.90 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_554/Y (OA21X1_RVT)
+                                                   0.06      1.95 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_549/Y (OA21X1_LVT)
+                                                   0.06      2.01 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_548/Y (OA21X1_LVT)
+                                                   0.06      2.07 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_543/Y (OA21X1_RVT)
+                                                   0.06      2.13 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_542/Y (OA21X1_LVT)
+                                                   0.06      2.18 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_537/Y (OA21X1_LVT)
+                                                   0.06      2.24 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_536/Y (OA21X1_HVT)
+                                                   0.06      2.30 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_531/Y (OA21X1_LVT)
+                                                   0.06      2.36 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_530/Y (OA21X1_LVT)
+                                                   0.06      2.41 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_525/Y (OA21X1_RVT)
+                                                   0.06      2.47 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_524/Y (OA21X1_LVT)
+                                                   0.06      2.53 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_519/Y (OA21X1_LVT)
+                                                   0.06      2.58 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_518/Y (OA21X1_HVT)
+                                                   0.06      2.64 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_513/Y (OA21X1_LVT)
+                                                   0.06      2.70 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_512/Y (OA21X1_LVT)
+                                                   0.06      2.76 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_507/Y (OA21X1_RVT)
+                                                   0.06      2.81 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_506/Y (OA21X1_LVT)
+                                                   0.06      2.87 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_501/Y (OA21X1_LVT)
+                                                   0.06      2.93 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_500/Y (OA21X1_RVT)
+                                                   0.06      2.99 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_495/Y (OA21X1_LVT)
+                                                   0.06      3.04 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_494/Y (OA21X1_LVT)
+                                                   0.06      3.10 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_489/Y (OA21X1_RVT)
+                                                   0.06      3.16 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_488/Y (OA21X1_LVT)
+                                                   0.06      3.22 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_481/Y (OA21X2_RVT)
+                                                   0.06      3.27 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_480/Y (OA21X1_RVT)
+                                                   0.06      3.33 f
+  RS_OP_20_49142_44100_J1/DP_OP_24_60912_12826_J0/ctmi_941/Y (XOR2X1_RVT)
+                                                   0.06      3.39 r
+  ctmi_3895/Y (AO222X1_RVT)                        0.10      3.49 r
+  ctmi_3893/Y (OR2X1_HVT)                          0.05      3.54 r
+  sum[62] (out)                                    0.00      3.54 r
+  data arrival time                                          3.54
+
+  clock clk (rise edge)                            4.91      4.91
+  clock network delay (ideal)                      0.50      5.41
+  clock uncertainty                               -0.20      5.21
+  output external delay                           -0.60      4.61
+  data required time                                         4.61
+  ------------------------------------------------------------------------
+  data required time                                         4.61
+  data arrival time                                         -3.54
+  ------------------------------------------------------------------------
+  slack (MET)                                                1.07
+
+
+1

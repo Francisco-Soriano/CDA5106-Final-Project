@@ -1,0 +1,58 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:00:03 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[1] (input port clocked by clk)
+  Endpoint: sum[61] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 f
+  Oper[1] (in)                                     0.00      1.05 f
+  A2872/Y (INVX16_HVT)                             0.04      1.09 r
+  A2685/Y (AND3X2_LVT)                             0.05      1.14 r
+  HFSBUF_159_2983/Y (NBUFFX16_LVT)                 0.05      1.19 r
+  ctmTdsLR_2_3025/Y (AO22X1_LVT)                   0.06      1.25 r
+  ctmTdsLR_3_3026/Y (AO21X1_LVT)                   0.04      1.29 r
+  ctmi_2453/Y (NAND2X0_LVT)                        0.03      1.32 f
+  ctmi_2464/Y (INVX1_LVT)                          0.03      1.35 r
+  ctmTdsLR_1_3021/Y (AO21X1_LVT)                   0.06      1.41 r
+  ctmi_2128/Y (AO21X2_LVT)                         0.07      1.48 r
+  ctmi_2152/Y (AO21X2_LVT)                         0.07      1.55 r
+  ctmi_2246/Y (AO21X1_LVT)                         0.06      1.61 r
+  HFSBUF_749_2977/Y (NBUFFX16_LVT)                 0.04      1.65 r
+  ctmi_2356/Y (AO21X1_LVT)                         0.06      1.72 r
+  ctmTdsLR_1_3089/Y (AO21X1_LVT)                   0.06      1.78 r
+  ctmTdsLR_2_3090/Y (AO21X1_RVT)                   0.04      1.82 r
+  ctmTdsLR_2_3016/Y (AO21X2_RVT)                   0.04      1.86 r
+  sum[61] (out)                                    0.00      1.86 r
+  data arrival time                                          1.86
+
+  clock clk (rise edge)                            2.23      2.23
+  clock network delay (ideal)                      0.50      2.73
+  clock uncertainty                               -0.20      2.53
+  output external delay                           -0.60      1.93
+  data required time                                         1.93
+  ------------------------------------------------------------------------
+  data required time                                         1.93
+  data arrival time                                         -1.86
+  ------------------------------------------------------------------------
+  slack (MET)                                                0.07
+
+
+1

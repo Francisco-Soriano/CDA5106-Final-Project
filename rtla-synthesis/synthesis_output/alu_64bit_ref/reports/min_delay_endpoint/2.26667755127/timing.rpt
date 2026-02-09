@@ -1,0 +1,62 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 17:58:49 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[0] (input port clocked by clk)
+  Endpoint: sum[56] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 r
+  Oper[0] (in)                                     0.00      1.05 r
+  HFSINV_624_2289/Y (INVX16_LVT)                   0.03      1.08 f
+  ctmi_1812/Y (AND3X2_LVT)                         0.06      1.15 f
+  HFSBUF_963_2307/Y (NBUFFX16_LVT)                 0.05      1.20 f
+  A1364/Y (NAND2X0_LVT)                            0.04      1.23 r
+  ctmTdsLR_1_2327/Y (NAND2X0_LVT)                  0.02      1.25 f
+  ctmTdsLR_2_2328/Y (AO21X1_LVT)                   0.04      1.30 f
+  DP_OP_14_43174_27450_J1/ctmi_792/Y (OR2X2_RVT)   0.05      1.35 f
+  DP_OP_14_43174_27450_J1/ctmi_790/Y (AND2X1_LVT)
+                                                   0.05      1.40 f
+  DP_OP_14_43174_27450_J1/ctmi_789/Y (AND2X1_RVT)
+                                                   0.05      1.45 f
+  ctmTdsLR_1_2361/Y (AO221X2_LVT)                  0.07      1.51 f
+  A2268/Y (AO21X1_LVT)                             0.06      1.57 f
+  HFSBUF_618_2290/Y (NBUFFX16_LVT)                 0.05      1.62 f
+  ctmi_1641/Y (AOI21X2_LVT)                        0.08      1.69 r
+  HFSINV_1894_2292/Y (INVX16_LVT)                  0.03      1.72 f
+  A2179/Y (NAND2X0_LVT)                            0.05      1.76 r
+  ctmTdsLR_1_2336/Y (NAND3X0_LVT)                  0.03      1.80 f
+  ctmTdsLR_2_2337/Y (INVX0_LVT)                    0.02      1.82 r
+  A2185/Y (OA21X1_LVT)                             0.05      1.87 r
+  sum[56] (out)                                    0.00      1.87 r
+  data arrival time                                          1.87
+
+  clock clk (rise edge)                            2.27      2.27
+  clock network delay (ideal)                      0.50      2.77
+  clock uncertainty                               -0.20      2.57
+  output external delay                           -0.60      1.97
+  data required time                                         1.97
+  ------------------------------------------------------------------------
+  data required time                                         1.97
+  data arrival time                                         -1.87
+  ------------------------------------------------------------------------
+  slack (MET)                                                0.10
+
+
+1

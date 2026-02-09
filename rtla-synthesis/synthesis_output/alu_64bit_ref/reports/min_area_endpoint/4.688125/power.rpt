@@ -1,0 +1,40 @@
+****************************************
+Report : power
+        -rtl
+        -significant_digits 2
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 17:46:38 2026
+****************************************
+Mode: func
+Corner: ss0p95v125c
+Scenario: func.ss0p95v125c
+Voltage: 0.95
+Temperature: 125.00
+
+Voltage Unit         : 1V
+Capacitance Unit     : 1fF
+Time Unit            : 1ns
+Temperature Unit     : 1C
+Dynamic Power Unit   : 1pW
+Leakage Power Unit   : 1pW
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)
+------------------------------------------------------------------------
+clock_network            0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+register                 0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+combinational            4.08e+07  3.32e+07  5.73e+07  1.31e+08 (100.00%)
+sequential               0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+memory                   0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+io_pad                   0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+black_box                0.00e+00  0.00e+00  0.00e+00  0.00e+00 ( 0.00%)
+
+  Net Switching Power  =  3.32e+07   (25.29%)
+  Cell Internal Power  =  4.08e+07   (31.08%)
+  Cell Leakage Power   =  5.73e+07   (43.63%)
+                         ---------
+Total Power            =  1.31e+08  (100.00%)
+Glitching Power        =  0.00e+00  (100.00%)
+
+1

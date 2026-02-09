@@ -1,0 +1,65 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 18:08:01 2026
+****************************************
+Information: Timer using 'Estimated Delay Calculation'. (TIM-050)
+
+  Startpoint: Oper[1] (input port clocked by clk)
+  Endpoint: sum[54] (output port clocked by clk)
+  Mode: func
+  Corner: ss0p95v125c
+  Scenario: func.ss0p95v125c
+  Path Group: FEEDTHROUGH
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock clk (rise edge)                            0.00      0.00
+  clock network delay (ideal)                      0.55      0.55
+  input external delay                             0.50      1.05 f
+  Oper[1] (in)                                     0.00      1.05 f
+  ctmi_481/Y (OR2X4_LVT)                           0.05      1.10 f
+  HFSINV_403_650/Y (INVX8_LVT)                     0.06      1.16 r
+  A7/Y (NAND2X4_LVT)                               0.03      1.18 f
+  HFSINV_367_645/Y (INVX8_RVT)                     0.05      1.24 r
+  ctmi_3084/Y (AO222X1_LVT)                        0.09      1.32 r
+  DP_OP_14_43174_27450_J1/ctmi_123/Y (OR2X1_HVT)   0.05      1.38 r
+  ctmi_516/Y (INVX1_RVT)                           0.01      1.39 f
+  ctmi_514/Y (OAI21X1_LVT)                         0.09      1.47 r
+  DP_OP_14_43174_27450_J1/ctmi_153/Y (AO221X1_RVT)
+                                                   0.07      1.55 r
+  ctmTdsLR_2_689/Y (AO21X1_LVT)                    0.06      1.61 r
+  ctmTdsLR_1_688/Y (AO21X2_LVT)                    0.04      1.65 r
+  DP_OP_14_43174_27450_J1/ctmi_72/Y (AO221X2_LVT)
+                                                   0.09      1.74 r
+  DP_OP_14_43174_27450_J1/ctmi_248/Y (AO21X1_LVT)
+                                                   0.07      1.81 r
+  ctmTdsLR_1_699/Y (AO221X1_LVT)                   0.08      1.89 r
+  DP_OP_14_43174_27450_J1/ctmi_267/Y (AO21X1_RVT)
+                                                   0.06      1.96 r
+  DP_OP_14_43174_27450_J1/ctmi_266/Y (XNOR2X1_LVT)
+                                                   0.08      2.03 r
+  ctmi_3154/Y (AO222X1_RVT)                        0.08      2.11 r
+  ctmi_3152/Y (OR2X2_RVT)                          0.05      2.16 r
+  sum[54] (out)                                    0.00      2.16 r
+  data arrival time                                          2.16
+
+  clock clk (rise edge)                            2.82      2.82
+  clock network delay (ideal)                      0.50      3.32
+  clock uncertainty                               -0.20      3.12
+  output external delay                           -0.60      2.52
+  data required time                                         2.52
+  ------------------------------------------------------------------------
+  data required time                                         2.52
+  data arrival time                                         -2.16
+  ------------------------------------------------------------------------
+  slack (MET)                                                0.35
+
+
+1

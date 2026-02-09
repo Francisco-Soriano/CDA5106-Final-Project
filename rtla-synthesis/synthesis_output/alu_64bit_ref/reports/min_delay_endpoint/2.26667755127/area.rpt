@@ -1,0 +1,23 @@
+****************************************
+Report : area
+Design : alu_64bit_ref
+Version: U-2022.12-SP6
+Date   : Wed Feb  4 17:58:49 2026
+****************************************
+
+Number of ports:                          195
+Number of nets:                          1589
+Number of cells:                         1438
+Number of combinational cells:           1438
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        257
+Number of references:                      90
+
+Combinational area:                   3371.73
+Buf/Inv area:                          429.76
+Noncombinational area:                   0.00
+Macro/Black Box area:                    0.00
+
+Total cell area:                      3371.73
+1

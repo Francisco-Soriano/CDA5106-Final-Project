@@ -1,0 +1,8 @@
+#@ # 
+#@ # Running rtl_shell Version U-2022.12-SP6 for linux64 -- Aug 25, 2023
+#@ # Date:   Wed Feb  4 17:41:12 2026
+#@ # Run by: jo045021@net1580
+#@ 
+
+set DESIGN_NAME alu_64bit_ref
+source -echo -verbose pareto_synthesis.tcl
