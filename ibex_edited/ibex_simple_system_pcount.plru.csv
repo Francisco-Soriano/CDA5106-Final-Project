@@ -1,0 +1,15 @@
+Cycles,3206552
+Instructions Retired,2754578
+LSU Busy,194842
+Fetch Wait,257131
+Loads,541202
+Stores,143491
+Jumps,57461
+Conditional Branches,524172
+Taken Conditional Branches,189441
+Compressed Instructions,0
+Multiply Wait,0
+Divide Wait,0
+I$ Tag Array Reads,1902583
+I$ Data Array Reads,1902583
+I$ Tag Array Writes,35088
