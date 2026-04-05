@@ -6,8 +6,8 @@ todos:
     content: Add way-prediction signal declarations to rtl/ibex_icache.sv after existing logic declarations (~line 200)
     status: pending
   - id: register-index
-    content: Register lookup_index_ic0 into lookup_index_ic1_q on lookup_grant_ic0 inside the existing IC0->IC1 pipeline always_ff block (~line 340)
-    status: pending
+    content: No action — lookup_index_ic1 is already a top-level global signal registered in both pipeline blocks in this version of the RTL
+    status: cancelled
   - id: add-prediction-logic
     content: Add predicted_way_ic0, predicted_way_ic1_q pipeline register, way_mispredict_ic1 detection, tag_hit_ic1_masked, and way_hint update flop before IC0 data RAM section (~line 270)
     status: pending
@@ -37,7 +37,7 @@ Three independent optimizations to `[rtl/ibex_icache.sv](rtl/ibex_icache.sv)`. A
 
 ## Optimization 1: Way-Prediction for Data RAM (existing plan)
 
-Already fully specified — see earlier sections. Changes lines ~200–614.
+Already fully specified in `icache_way-prediction_optimization1.md`. **Key update:** `lookup_index_ic1_q` is NOT a new signal — `lookup_index_ic1` is already a top-level global signal in this version of the RTL. Step 2 of that plan is cancelled. All references to `lookup_index_ic1_q` in the hint update use `lookup_index_ic1` instead.
 
 ---
 
@@ -66,7 +66,7 @@ localparam int unsigned NUM_FB = 2;   // reduced for power; minimum allowed is 2
 
 **Impact:**
 
-- ~50% fewer fill buffer state registers (`fill_busy_q`, `fill_older_q`, `fill_stale_q`, `fill_cache_q`, `fill_hit_q`, `fill_ext_cnt_q`, `fill_ext_done_q`, `fill_rvd_cnt_q`, `fill_ram_done_q`, `fill_out_cnt_q`, `fill_err_q`, `fill_addr_q`, `fill_way_q`, `fill_data_q` — all `[NUM_FB-1:0]` or `[NUM_FB]` indexed) are cut in half
+- ~50% fewer fill buffer state registers (`fill_busy_q`, `fill_older_q`, `fill_stale_q`, `fill_cache_q`, `fill_hit_q`, `fill_evict_q`, `fill_ext_cnt_q`, `fill_ext_done_q`, `fill_rvd_cnt_q`, `fill_ram_done_q`, `fill_out_cnt_q`, `fill_err_q`, `fill_addr_q`, `fill_way_q`, `fill_data_q` — all `[NUM_FB-1:0]` or `[NUM_FB]` indexed) are cut in half
 - `fill_older_q` drops from 4×4 to 2×2 (12 fewer bits)
 - `fb_fill_level` drops from 2-bit to 1-bit counter
 - **Risk:** under workloads with 3–4 outstanding cache misses (uncommon for sequential instruction fetch), throughput can drop since throttling is more aggressive

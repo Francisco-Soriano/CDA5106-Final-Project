@@ -6,8 +6,8 @@ todos:
     content: Add way-prediction signal declarations to rtl/ibex_icache.sv after existing logic declarations (~line 200)
     status: pending
   - id: register-index
-    content: Register lookup_index_ic0 into lookup_index_ic1_q on lookup_grant_ic0 inside the existing IC0->IC1 pipeline always_ff block (~line 340)
-    status: pending
+    content: No action needed — lookup_index_ic1 is already a global signal registered in both g_lookup_addr_ra and g_lookup_addr_nr pipeline blocks in this version of the RTL
+    status: cancelled
   - id: add-prediction-logic
     content: Add predicted_way_ic0, predicted_way_ic1_q pipeline register, way_mispredict_ic1 detection, tag_hit_ic1_masked, and way_hint update flop before IC0 data RAM section (~line 270)
     status: pending
@@ -86,25 +86,20 @@ logic                  predicted_way_ic0;   // IC0: which way to read
 logic                  predicted_way_ic1_q; // pipelined to IC1
 logic                  way_mispredict_ic1;  // hit but on wrong way
 logic                  tag_hit_ic1_masked;  // tag_hit suppressed on misprediction
-logic [IC_INDEX_W-1:0] lookup_index_ic1_q; // IC0 index pipelined to IC1
 ```
 
-### Step 2 — Register lookup index into IC1 (~line 351)
+Note: `lookup_index_ic1_q` is NOT needed. In this version of the RTL, `lookup_index_ic1` is already a top-level signal registered in both the `g_lookup_addr_ra` and `g_lookup_addr_nr` IC0→IC1 pipeline blocks. Use `lookup_index_ic1` directly everywhere below.
 
-`lookup_addr_ic1` only stores upper tag bits (`ADDR_W-1:IC_INDEX_HI+1`), not the set index. `ResetAll` is absent from all `ibex_configs.yaml` entries (defaults to 0), so only the non-ResetAll block at lines 351–356 is active. Add one line there:
+### Step 2 — Register lookup index into IC1 — NO CHANGE NEEDED
+
+`lookup_index_ic1` is already declared at the top level and registered in both pipeline blocks:
 
 ```systemverilog
-// g_lookup_addr_nr block (lines 351-356) — add the third line:
-always_ff @(posedge clk_i) begin
-  if (lookup_grant_ic0) begin
-    lookup_addr_ic1    <= lookup_addr_ic0[ADDR_W-1:IC_INDEX_HI+1];
-    fill_in_ic1        <= fill_alloc_sel;
-    lookup_index_ic1_q <= lookup_index_ic0;   // ADD THIS LINE
-  end
-end
+// Already present in g_lookup_addr_ra and g_lookup_addr_nr:
+lookup_index_ic1 <= lookup_addr_ic0[IC_INDEX_HI:IC_LINE_W];
 ```
 
-Note: `lookup_index_ic1_q` is a new global-scope signal. It is distinct from the `lookup_index_ic1` variable declared locally inside `gen_data_ecc_checking` — no name collision.
+Use `lookup_index_ic1` directly in Steps 3 and 5 below. No new register or signal needed.
 
 ### Step 3 — Prediction logic (before IC0 data RAM section, ~line 270)
 
@@ -133,7 +128,7 @@ assign way_hint_en = lookup_valid_ic1 & tag_hit_ic1;
 
 always_ff @(posedge clk_i) begin
   if (way_hint_en) begin
-    way_hint_index_q <= lookup_index_ic1_q;
+    way_hint_index_q <= lookup_index_ic1;   // use existing global signal
     way_hint_q       <= tag_match_ic1[1];   // 1 if way 1 hit
   end
 end
