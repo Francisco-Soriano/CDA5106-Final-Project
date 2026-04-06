@@ -119,7 +119,7 @@ The CSV should include these I$ counters:
 If these are missing, check that:
 
 - You used one of the new proxy configs.
-- `MHPMCounterNum` in config is at least `16`.
+- `MHPMCounterNum` in config is at least `19`.
 
 ---
 

@@ -28,7 +28,7 @@ Implemented the full RR vs PLRU proxy-power plan from `doc/projectplan.md`:
   - `ICache=1`
   - `ICacheECC=1`
   - `ICachePLRU=0` (RR config) or `1` (PLRU config)
-  - `MHPMCounterNum=16` (ensures indices 13..18 exist)
+  - `MHPMCounterNum=19` (ensures indices 13..18 exist)
 
 ### Parser support
 

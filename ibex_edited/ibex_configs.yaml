@@ -227,7 +227,7 @@ maxperf-pmp-bmfull-icache-rr-proxy:
   PMPEnable                : 1
   PMPGranularity           : 0
   PMPNumRegions            : 16
-  MHPMCounterNum           : 16
+  MHPMCounterNum           : 19
   MHPMCounterWidth         : 40
 
 # maxperf-pmp-bmfull-icache config above with explicit PLRU policy and extra HPM counters
@@ -249,5 +249,5 @@ maxperf-pmp-bmfull-icache-plru-proxy:
   PMPEnable                : 1
   PMPGranularity           : 0
   PMPNumRegions            : 16
-  MHPMCounterNum           : 16
+  MHPMCounterNum           : 19
   MHPMCounterWidth         : 40
