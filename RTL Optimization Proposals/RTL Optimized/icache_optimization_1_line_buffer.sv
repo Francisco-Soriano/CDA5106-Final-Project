@@ -280,7 +280,7 @@ module ibex_icache import ibex_pkg::*; #(
   // Qualified lookup grant to mask ram signals in IC1 if access was not made
   assign lookup_actual_ic0 = lookup_grant_ic0 & icache_enable_i & ~inval_block_cache;
 
-  // Tagram (sram_lookup_ic0 gates out lookups that hit the line buffer)
+  // Tagram
   assign tag_req_ic0   = sram_lookup_ic0 | fill_req_ic0 | inval_write_req | ecc_write_req;
   assign tag_index_ic0 = inval_write_req ? inval_index_q :
                          ecc_write_req   ? ecc_write_index :
@@ -291,7 +291,7 @@ module ibex_icache import ibex_pkg::*; #(
                                           {IC_NUM_WAYS{1'b1}};
   assign tag_write_ic0 = fill_grant_ic0 | inval_write_req | ecc_write_req;
 
-  // Dataram (sram_lookup_ic0 gates out lookups that hit the line buffer)
+  // Dataram
   assign data_req_ic0   = sram_lookup_ic0 | fill_req_ic0;
   assign data_index_ic0 = tag_index_ic0;
   assign data_banks_ic0 = tag_banks_ic0;
@@ -501,8 +501,8 @@ module ibex_icache import ibex_pkg::*; #(
     // and all further tag writes produce correct ECC. For data ECC no initialisation is done on
     // reset so unused data (in particular those ways that don't have a valid tag) may have
     // incorrect ECC. We only check data ECC where tags indicate it is valid and we have hit on it.
-    // On a line buffer hit, tag SRAM data is stale so tag_err_ic1 may spuriously fire.
-    // Only the data ECC check (on line_buf_data_ecc_q) is valid in that case.
+    // On a line buffer hit, data ECC checks the line_buf_data_ecc_q register.
+    // Tag ECC errors are deferred to the next non-line-buffer-hit access.
     assign ecc_err_ic1 = lookup_valid_ic1 & (
         ( line_buf_hit_ic1 & (|data_err_ic1) & tag_hit_ic1) |
         (~line_buf_hit_ic1 & (((|data_err_ic1) & tag_hit_ic1) | (|tag_err_ic1))));
@@ -1236,7 +1236,10 @@ module ibex_icache import ibex_pkg::*; #(
     // ---- IC0 hit detection ------------------------------------------------
     assign line_buf_hit_ic0 = line_buf_valid_q & lookup_req_ic0 &
                               (lookup_addr_ic0[ADDR_W-1:IC_LINE_W] == line_buf_tag_q);
-    assign sram_lookup_ic0  = lookup_req_ic0 & ~line_buf_hit_ic0;
+    // SRAM is always read regardless of line buffer hit to keep tag_rdata_ic1
+    // and data_rdata_ic1 valid (avoids stale-data hazards from held SRAM outputs).
+    // The line buffer still provides data injection in IC1 and bus suppression.
+    assign sram_lookup_ic0  = lookup_req_ic0;
 
     // ---- IC0 -> IC1 pipeline registers ------------------------------------
     always_ff @(posedge clk_i or negedge rst_ni) begin
