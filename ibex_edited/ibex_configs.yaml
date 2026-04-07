@@ -221,7 +221,7 @@ maxperf-pmp-bmfull-icache-rr-proxy:
   ICacheECC                : 1
   ICacheScramble           : 0
   ICachePLRU               : 0
-  BranchPredictor          : 0
+  BranchPredictor          : 1
   DbgTriggerEn             : 0
   SecureIbex               : 0
   PMPEnable                : 1
@@ -243,7 +243,7 @@ maxperf-pmp-bmfull-icache-plru-proxy:
   ICacheECC                : 1
   ICacheScramble           : 0
   ICachePLRU               : 1
-  BranchPredictor          : 0
+  BranchPredictor          : 1
   DbgTriggerEn             : 0
   SecureIbex               : 0
   PMPEnable                : 1

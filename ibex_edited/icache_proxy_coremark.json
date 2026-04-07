@@ -10,39 +10,39 @@
   "rr": {
     "file": "ibex_simple_system_pcount.rr.csv",
     "counters": {
-      "cycles": 3207066,
+      "cycles": 3113043,
       "instret": 2754578,
-      "fetch_wait": 257649,
-      "tag_reads": 1902189,
-      "data_reads": 1902189,
-      "tag_writes": 38372,
-      "data_writes": 0,
+      "fetch_wait": 163673,
+      "tag_reads": 1937660,
+      "data_reads": 1937660,
+      "tag_writes": 39246,
+      "data_writes": 39246,
       "evictions": 0,
       "inval_tag_writes": 0
     },
     "metrics": {
-      "proxy_energy": 5783311.0,
-      "proxy_energy_per_inst": 2.0995270418917165,
-      "proxy_energy_per_cycle": 1.803302769571939
+      "proxy_energy": 6009210.0,
+      "proxy_energy_per_inst": 2.181535610899383,
+      "proxy_energy_per_cycle": 1.9303331177886074
     }
   },
   "plru": {
     "file": "ibex_simple_system_pcount.plru.csv",
     "counters": {
-      "cycles": 3206552,
+      "cycles": 3112363,
       "instret": 2754578,
-      "fetch_wait": 257131,
-      "tag_reads": 1902583,
-      "data_reads": 1902583,
-      "tag_writes": 35088,
-      "data_writes": 0,
+      "fetch_wait": 162993,
+      "tag_reads": 1938044,
+      "data_reads": 1938044,
+      "tag_writes": 35660,
+      "data_writes": 35660,
       "evictions": 0,
       "inval_tag_writes": 0
     },
     "metrics": {
-      "proxy_energy": 5777925.0,
-      "proxy_energy_per_inst": 2.0975717514624743,
-      "proxy_energy_per_cycle": 1.8019121473782431
+      "proxy_energy": 5992432.0,
+      "proxy_energy_per_inst": 2.175444659762766,
+      "proxy_energy_per_cycle": 1.9253641043798555
     }
   }
 }
