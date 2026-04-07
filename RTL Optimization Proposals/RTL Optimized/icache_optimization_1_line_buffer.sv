@@ -945,7 +945,7 @@ module ibex_icache import ibex_pkg::*; #(
   // External requests //
   ///////////////////////
 
-  assign instr_req  = ((~icache_enable_i | branch_i) & lookup_grant_ic0) |
+  assign instr_req  = ((~icache_enable_i | branch_i) & lookup_grant_ic0 & ~line_buf_hit_ic0) |
                       (|fill_ext_req);
 
   assign instr_addr = |fill_ext_req ? fill_ext_req_addr :
