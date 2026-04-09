@@ -215,6 +215,8 @@ module ibex_icache import ibex_pkg::*; #(
   logic                                   sram_lookup_ic0;
   logic                                   line_buf_hit_ic0;
   logic                                   line_buf_hit_ic1;
+  logic                                   line_buf_inval;
+  logic                                   line_buf_inval_comb;
   logic [IC_NUM_WAYS-1:0]                 line_buf_way_q;
   logic [LineSizeECC-1:0]                 line_buf_data_ecc_q;
   logic [IC_NUM_WAYS-1:0]                 tag_match_raw_ic1;
@@ -280,7 +282,9 @@ module ibex_icache import ibex_pkg::*; #(
   // Qualified lookup grant to mask ram signals in IC1 if access was not made
   assign lookup_actual_ic0 = lookup_grant_ic0 & icache_enable_i & ~inval_block_cache;
 
-  // Tagram (sram_lookup_ic0 gates out lookups that hit the line buffer)
+  // Tagram: always read the SRAM on a lookup (even on line-buffer hits) to
+  // keep tag_invalid_ic1 / fill_way_q correct. The line buffer only suppresses
+  // EXTERNAL memory requests, not SRAM reads.
   assign tag_req_ic0   = sram_lookup_ic0 | fill_req_ic0 | inval_write_req | ecc_write_req;
   assign tag_index_ic0 = inval_write_req ? inval_index_q :
                          ecc_write_req   ? ecc_write_index :
@@ -291,7 +295,7 @@ module ibex_icache import ibex_pkg::*; #(
                                           {IC_NUM_WAYS{1'b1}};
   assign tag_write_ic0 = fill_grant_ic0 | inval_write_req | ecc_write_req;
 
-  // Dataram (sram_lookup_ic0 gates out lookups that hit the line buffer)
+  // Dataram: also always read on a lookup for the same reason.
   assign data_req_ic0   = sram_lookup_ic0 | fill_req_ic0;
   assign data_index_ic0 = tag_index_ic0;
   assign data_banks_ic0 = tag_banks_ic0;
@@ -399,7 +403,7 @@ module ibex_icache import ibex_pkg::*; #(
     assign tag_invalid_ic1[way]   = ~tag_rdata_ic1[way][IC_TAG_SIZE-1];
   end
 
-  assign tag_match_ic1 = line_buf_hit_ic1 ? line_buf_way_q : tag_match_raw_ic1;
+  assign tag_match_ic1 = (line_buf_hit_ic1 & ~line_buf_inval_comb) ? line_buf_way_q : tag_match_raw_ic1;
   assign tag_hit_ic1   = |tag_match_ic1;
 
   // Hit data mux -- inject line buffer data on line buffer hit
@@ -1230,13 +1234,17 @@ module ibex_icache import ibex_pkg::*; #(
     logic [ADDR_W-1:IC_LINE_W] line_buf_tag_q;
     logic                      line_buf_valid_q;
     logic                      line_buf_capture;
-    logic                      line_buf_inval;
+
     logic                      branch_ic1;
 
     // ---- IC0 hit detection ------------------------------------------------
-    assign line_buf_hit_ic0 = line_buf_valid_q & lookup_req_ic0 &
+    // sram_lookup_ic0 is always 1 when there is a lookup (we still read SRAM
+    // on line-buffer hits so that IC1 state stays correct).  The hit signal
+    // is only used here to suppress the speculative external memory request
+    // and to set line_buf_hit_ic1 for the IC1 data-override.
+    assign sram_lookup_ic0  = lookup_req_ic0;  // SRAM always accessed on lookup
+    assign line_buf_hit_ic0 = line_buf_valid_q & ~line_buf_inval_comb & lookup_req_ic0 & branch_i &
                               (lookup_addr_ic0[ADDR_W-1:IC_LINE_W] == line_buf_tag_q);
-    assign sram_lookup_ic0  = lookup_req_ic0 & ~line_buf_hit_ic0;
 
     // ---- IC0 -> IC1 pipeline registers ------------------------------------
     always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -1254,17 +1262,49 @@ module ibex_icache import ibex_pkg::*; #(
                               branch_ic1 & ~line_buf_hit_ic1;
 
     // ---- Invalidation condition -------------------------------------------
-    assign line_buf_inval = icache_inval_i | ~icache_enable_i |
-                            (ecc_err_ic1 & line_buf_hit_ic1);
+    // The line buffer is stale when:
+    //  1. Cache disabled / explicit invalidation
+    //  2. ECC error detected on a line-buffer hit
+    //  3. A fill buffer commits a SRAM write to the same cache SET and WAY
+    //     that the line buffer holds – i.e. its backing SRAM entry was evicted
+    //  4. A fill buffer is actively loading new data for the EXACT cache line
+    //     address the line buffer holds (newer data exists for the same line)
+
+
+    // ---- Invalidation condition -------------------------------------------
+    logic fill_evicts_line_buf;
+    always_comb begin
+      fill_evicts_line_buf = 1'b0;
+      for (int i = 0; i < NUM_FB; i++) begin
+        // Case 3: fill commits to SRAM at same set+way as line buffer
+        if (fill_ram_arb[i] &
+            (fill_addr_q[i][IC_INDEX_HI:IC_LINE_W] == line_buf_tag_q[IC_INDEX_HI:IC_LINE_W]) &
+            |(fill_way_q[i] & line_buf_way_q)) begin
+          fill_evicts_line_buf = 1'b1;
+        end
+        // Case 4: fill is loading or has just loaded the exact same cache line
+        if (fill_busy_q[i] & ~fill_rvd_done[i] & ~fill_hit_q[i] & ~fill_in_ic1[i] &
+            (fill_addr_q[i][ADDR_W-1:IC_LINE_W] == line_buf_tag_q)) begin
+          fill_evicts_line_buf = 1'b1;
+        end
+      end
+    end
+
+    assign line_buf_inval_comb = icache_inval_i | ~icache_enable_i | fill_evicts_line_buf;
+    assign line_buf_inval      = line_buf_inval_comb | (ecc_err_ic1 & line_buf_hit_ic1);
 
     // ---- Valid register ---------------------------------------------------
     always_ff @(posedge clk_i or negedge rst_ni) begin
       if (!rst_ni) begin
         line_buf_valid_q <= 1'b0;
+      end else if (ready_i) begin
+        if (line_buf_inval | line_buf_hit_ic1) begin
+          line_buf_valid_q <= 1'b0;
+        end else if (line_buf_capture) begin
+          line_buf_valid_q <= 1'b1;
+        end
       end else if (line_buf_inval) begin
         line_buf_valid_q <= 1'b0;
-      end else if (line_buf_capture) begin
-        line_buf_valid_q <= 1'b1;
       end
     end
 
@@ -1299,6 +1339,8 @@ module ibex_icache import ibex_pkg::*; #(
     assign line_buf_hit_ic1 = 1'b0;
     assign line_buf_way_q      = '0;
     assign line_buf_data_ecc_q = '0;
+    assign line_buf_inval      = 1'b0;
+    assign line_buf_inval_comb = 1'b0;
 
   end // gen_no_line_buf
 
