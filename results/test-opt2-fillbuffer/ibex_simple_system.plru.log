@@ -1,0 +1,18 @@
+Ibex CoreMark platform init...
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 3112356
+Total time (secs): 6.224712
+Iterations/Sec   : 1.606500
+Iterations       : 10
+Compiler version : GCC
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0xfcaf
+Correct operation validated. See README.md for run and reporting rules.
+CoreMark 1.0 : 1.606500 / GCC  / STACK
+CoreMark / MHz: 3.213000

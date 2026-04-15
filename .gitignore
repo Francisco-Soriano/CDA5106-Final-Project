@@ -1,1 +1,5 @@
 build/
+
+# Large simulation dumps (summaries stay in results/)
+results/**/simple_system_cosim.log
+results/**/trace_core_*.log
