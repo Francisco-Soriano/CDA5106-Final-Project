@@ -6,6 +6,9 @@
  * Instruction cache
  *
  * Provides an instruction cache along with cache management, instruction buffering and prefetching
+ *
+ * Optimization (CoreMark op1-2): same-line line buffer suppresses redundant tag/data RAM reads when
+ * sequential fetches stay within the last hit line. See ibex_edited/plans/icache_planner_agent_coremark_op1-2.md.
  */
 
 `include "prim_assert.sv"
@@ -18,9 +21,7 @@ module ibex_icache import ibex_pkg::*; #(
   parameter int unsigned TagSizeECC      = IC_TAG_SIZE,
   parameter int unsigned LineSizeECC     = IC_LINE_SIZE,
   // Only cache branch targets
-  parameter bit          BranchCache     = 1'b0,
-  // Branch-target line buffer: suppresses SRAM reads on repeated branch-target hits
-  parameter bit          ICacheLineBuffer = 1'b0
+  parameter bit          BranchCache     = 1'b0
 ) (
   // Clock and reset
   input  logic                           clk_i,
@@ -79,7 +80,9 @@ module ibex_icache import ibex_pkg::*; #(
   // Number of fill buffers (must be >= 2)
   localparam int unsigned NUM_FB        = 4;
   // Request throttling threshold
-  localparam int unsigned FB_THRESHOLD  = NUM_FB - 3;
+  localparam int unsigned FB_THRESHOLD  = NUM_FB - 2;
+  // Line-buffer compare field (PC line number, excluding in-line offset)
+  localparam int unsigned LINE_BUF_ADDR_W = ADDR_W - IC_LINE_W;
 
   // Prefetch signals
   logic [ADDR_W-1:0]                      lookup_addr_aligned;
@@ -128,6 +131,14 @@ module ibex_icache import ibex_pkg::*; #(
   logic                                   ecc_write_req;
   logic [IC_NUM_WAYS-1:0]                 ecc_write_ways;
   logic [IC_INDEX_W-1:0]                  ecc_write_index;
+  // Last-line buffer (sequential same-line lookup bypass of tag/data RAM)
+  logic                                   line_buf_valid_q;
+  logic [LINE_BUF_ADDR_W-1:0]             line_buf_line_q;
+  logic [IC_NUM_WAYS-1:0]                 line_buf_way_q;
+  logic [LineSizeECC-1:0]                 line_buf_data_q;
+  logic                                   line_buf_hit_ic0;
+  logic                                   line_buf_hit_ic1;
+  logic                                   line_buf_clr;
   // Fill buffer signals
   logic [$clog2(NUM_FB)-1:0]              fb_fill_level;
   logic                                   fill_cache_new;
@@ -211,14 +222,6 @@ module ibex_icache import ibex_pkg::*; #(
   logic                  inval_index_en;
   logic                  inval_active;
 
-  // Line buffer signals (active only when ICacheLineBuffer = 1)
-  logic                                   sram_lookup_ic0;
-  logic                                   line_buf_hit_ic0;
-  logic                                   line_buf_hit_ic1;
-  logic [IC_NUM_WAYS-1:0]                 line_buf_way_q;
-  logic [LineSizeECC-1:0]                 line_buf_data_ecc_q;
-  logic [IC_NUM_WAYS-1:0]                 tag_match_raw_ic1;
-
   //////////////////////////
   // Instruction prefetch //
   //////////////////////////
@@ -280,8 +283,13 @@ module ibex_icache import ibex_pkg::*; #(
   // Qualified lookup grant to mask ram signals in IC1 if access was not made
   assign lookup_actual_ic0 = lookup_grant_ic0 & icache_enable_i & ~inval_block_cache;
 
+  // Hit in last-line buffer: same cache line as previous hit without a new RAM lookup
+  assign line_buf_hit_ic0  = lookup_actual_ic0 & line_buf_valid_q &
+      (line_buf_line_q == lookup_addr_ic0[ADDR_W-1:IC_LINE_W]);
+
   // Tagram
-  assign tag_req_ic0   = sram_lookup_ic0 | fill_req_ic0 | inval_write_req | ecc_write_req;
+  assign tag_req_ic0   = (lookup_req_ic0 & ~line_buf_hit_ic0) | fill_req_ic0 | inval_write_req |
+                         ecc_write_req;
   assign tag_index_ic0 = inval_write_req ? inval_index_q :
                          ecc_write_req   ? ecc_write_index :
                          fill_grant_ic0  ? fill_index_ic0 :
@@ -292,7 +300,7 @@ module ibex_icache import ibex_pkg::*; #(
   assign tag_write_ic0 = fill_grant_ic0 | inval_write_req | ecc_write_req;
 
   // Dataram
-  assign data_req_ic0   = sram_lookup_ic0 | fill_req_ic0;
+  assign data_req_ic0   = (lookup_req_ic0 & ~line_buf_hit_ic0) | fill_req_ic0;
   assign data_index_ic0 = tag_index_ic0;
   assign data_banks_ic0 = tag_banks_ic0;
   assign data_write_ic0 = tag_write_ic0;
@@ -372,10 +380,12 @@ module ibex_icache import ibex_pkg::*; #(
         lookup_addr_ic1 <= '0;
         lookup_index_ic1 <= '0;
         fill_in_ic1     <= '0;
+        line_buf_hit_ic1 <= 1'b0;
       end else if (lookup_grant_ic0) begin
         lookup_addr_ic1 <= lookup_addr_ic0[ADDR_W-1:IC_INDEX_HI+1];
         lookup_index_ic1 <= lookup_addr_ic0[IC_INDEX_HI:IC_LINE_W];
         fill_in_ic1     <= fill_alloc_sel;
+        line_buf_hit_ic1 <= line_buf_hit_ic0;
       end
     end
   end else begin : g_lookup_addr_nr
@@ -384,6 +394,7 @@ module ibex_icache import ibex_pkg::*; #(
         lookup_addr_ic1 <= lookup_addr_ic0[ADDR_W-1:IC_INDEX_HI+1];
         lookup_index_ic1 <= lookup_addr_ic0[IC_INDEX_HI:IC_LINE_W];
         fill_in_ic1     <= fill_alloc_sel;
+        line_buf_hit_ic1 <= line_buf_hit_ic0;
       end
     end
   end
@@ -392,21 +403,21 @@ module ibex_icache import ibex_pkg::*; #(
   // Pipeline stage IC1 //
   ////////////////////////
 
-  // Tag matching -- compute raw SRAM-based match, then override on line buffer hit
+  // Tag matching
   for (genvar way = 0; way < IC_NUM_WAYS; way++) begin : gen_tag_match
-    assign tag_match_raw_ic1[way] = (tag_rdata_ic1[way][IC_TAG_SIZE-1:0] ==
-                                     {1'b1,lookup_addr_ic1[ADDR_W-1:IC_INDEX_HI+1]});
-    assign tag_invalid_ic1[way]   = ~tag_rdata_ic1[way][IC_TAG_SIZE-1];
+    assign tag_match_ic1[way]   = line_buf_hit_ic1 ? line_buf_way_q[way] :
+        (tag_rdata_ic1[way][IC_TAG_SIZE-1:0] ==
+         {1'b1,lookup_addr_ic1[ADDR_W-1:IC_INDEX_HI+1]});
+    assign tag_invalid_ic1[way] = ~tag_rdata_ic1[way][IC_TAG_SIZE-1];
   end
 
-  assign tag_match_ic1 = line_buf_hit_ic1 ? line_buf_way_q : tag_match_raw_ic1;
-  assign tag_hit_ic1   = |tag_match_ic1;
+  assign tag_hit_ic1 = |tag_match_ic1;
 
-  // Hit data mux -- inject line buffer data on line buffer hit
+  // Hit data mux
   always_comb begin
     hit_data_ecc_ic1 = 'b0;
     if (line_buf_hit_ic1) begin
-      hit_data_ecc_ic1 = line_buf_data_ecc_q;
+      hit_data_ecc_ic1 = line_buf_data_q;
     end else begin
       for (int way = 0; way < IC_NUM_WAYS; way++) begin
         if (tag_match_ic1[way]) begin
@@ -438,8 +449,9 @@ module ibex_icache import ibex_pkg::*; #(
   assign plru_way_ic1 = plru_mru_way_q[lookup_index_ic1] ? 2'b01 : 2'b10;
   assign repl_way_ic1 = ICachePLRU ? plru_way_ic1 : round_robin_way_q;
 
-  assign sel_way_ic1 = |tag_invalid_ic1 ? lowest_invalid_way_ic1 :
-                                          repl_way_ic1;
+  // Tag RAM is not read on line_buf hit; victim/invalid info would be stale—use replacement way only
+  assign sel_way_ic1 = line_buf_hit_ic1 ? repl_way_ic1 :
+                       (|tag_invalid_ic1 ? lowest_invalid_way_ic1 : repl_way_ic1);
 
   always_ff @(posedge clk_i or negedge rst_ni) begin
     if (!rst_ni) begin
@@ -501,11 +513,9 @@ module ibex_icache import ibex_pkg::*; #(
     // and all further tag writes produce correct ECC. For data ECC no initialisation is done on
     // reset so unused data (in particular those ways that don't have a valid tag) may have
     // incorrect ECC. We only check data ECC where tags indicate it is valid and we have hit on it.
-    // On a line buffer hit, data ECC checks the line_buf_data_ecc_q register.
-    // Tag ECC errors are deferred to the next non-line-buffer-hit access.
-    assign ecc_err_ic1 = lookup_valid_ic1 & (
-        ( line_buf_hit_ic1 & (|data_err_ic1) & tag_hit_ic1) |
-        (~line_buf_hit_ic1 & (((|data_err_ic1) & tag_hit_ic1) | (|tag_err_ic1))));
+    // Skip ECC re-check when serving from line buffer (RAM tag/data not fetched this cycle)
+    assign ecc_err_ic1 = lookup_valid_ic1 & ~line_buf_hit_ic1 &
+        (((|data_err_ic1) & tag_hit_ic1) | (|tag_err_ic1));
 
     // Error correction
     // All ways will be invalidated on a tag error to prevent X-propagation from data_err_ic1 on
@@ -513,8 +523,7 @@ module ibex_icache import ibex_pkg::*; #(
     // hit and a spurious hit.
     assign ecc_correction_ways_d  = {IC_NUM_WAYS{|tag_err_ic1}} |
                                     (tag_match_ic1 & {IC_NUM_WAYS{|data_err_ic1}});
-    // Suppress SRAM correction write for line buffer ECC errors (register, not SRAM corruption)
-    assign ecc_correction_write_d = ecc_err_ic1 & ~line_buf_hit_ic1;
+    assign ecc_correction_write_d = ecc_err_ic1;
 
     always_ff @(posedge clk_i or negedge rst_ni) begin
       if (!rst_ni) begin
@@ -558,6 +567,30 @@ module ibex_icache import ibex_pkg::*; #(
 
     assign ecc_error_o = 1'b0;
   end
+
+  // Line buffer invalidation: branch, disable, inval, any tag/data write, new scramble key request
+  assign line_buf_clr = branch_i | ~icache_enable_i | icache_inval_i | fill_grant_ic0 |
+      inval_write_req | ecc_write_req | ic_scr_key_req_o;
+
+  // Capture last hit line for sequential same-line bypass
+  always_ff @(posedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      line_buf_valid_q <= 1'b0;
+      line_buf_line_q  <= '0;
+      line_buf_way_q   <= '0;
+      line_buf_data_q  <= '0;
+    end else if (line_buf_clr) begin
+      line_buf_valid_q <= 1'b0;
+    end else if (lookup_valid_ic1 & (~tag_hit_ic1 | ecc_err_ic1)) begin
+      // Miss or ECC failure: buffer must not bypass RAM for a line that may not match cache state
+      line_buf_valid_q <= 1'b0;
+    end else if (lookup_valid_ic1 & tag_hit_ic1 & ~ecc_err_ic1) begin
+      line_buf_valid_q <= 1'b1;
+      line_buf_line_q  <= {lookup_addr_ic1, lookup_index_ic1};
+      line_buf_way_q   <= tag_match_ic1;
+      line_buf_data_q  <= hit_data_ecc_ic1;
+    end
+  end // line_buf_regs
 
   ///////////////////////////////
   // Cache allocation decision //
@@ -607,7 +640,7 @@ module ibex_icache import ibex_pkg::*; #(
   assign fill_new_alloc = lookup_grant_ic0;
   // Track whether a speculative external request was made from IC0, and whether it was granted
   // Speculative requests are only made for branches, or if the cache is disabled
-  assign fill_spec_req  = (~icache_enable_i | branch_i) & ~|fill_ext_req & ~line_buf_hit_ic0;
+  assign fill_spec_req  = (~icache_enable_i | branch_i) & ~|fill_ext_req;
   assign fill_spec_done = fill_spec_req & instr_gnt_i;
   assign fill_spec_hold = fill_spec_req & ~instr_gnt_i;
 
@@ -821,7 +854,7 @@ module ibex_icache import ibex_pkg::*; #(
 
     assign fill_addr_en[fb]    = fill_alloc[fb];
     assign fill_way_en[fb]     = (lookup_valid_ic1 & fill_in_ic1[fb]);
-    assign fill_evict_d[fb]    = fill_way_en[fb] & ~|tag_invalid_ic1;
+    assign fill_evict_d[fb]    = fill_way_en[fb] & ~|tag_invalid_ic1 & ~line_buf_hit_ic1;
 
     if (ResetAll) begin : g_fill_addr_ra
       always_ff @(posedge clk_i or negedge rst_ni) begin
@@ -945,7 +978,7 @@ module ibex_icache import ibex_pkg::*; #(
   // External requests //
   ///////////////////////
 
-  assign instr_req  = ((~icache_enable_i | branch_i) & lookup_grant_ic0 & ~line_buf_hit_ic0) |
+  assign instr_req  = ((~icache_enable_i | branch_i) & lookup_grant_ic0) |
                       (|fill_ext_req);
 
   assign instr_addr = |fill_ext_req ? fill_ext_req_addr :
@@ -1221,90 +1254,6 @@ module ibex_icache import ibex_pkg::*; #(
   // outstanding.
   assign busy_o = inval_active | (|(fill_busy_q & ~fill_rvd_done));
 
-  /////////////////////////////////////////
-  // Line buffer (branch-target capture) //
-  /////////////////////////////////////////
-
-  if (ICacheLineBuffer) begin : gen_line_buf
-
-    logic [ADDR_W-1:IC_LINE_W] line_buf_tag_q;
-    logic                      line_buf_valid_q;
-    logic                      line_buf_capture;
-    logic                      line_buf_inval;
-    logic                      branch_ic1;
-
-    // ---- IC0 hit detection ------------------------------------------------
-    assign line_buf_hit_ic0 = line_buf_valid_q & lookup_req_ic0 &
-                              (lookup_addr_ic0[ADDR_W-1:IC_LINE_W] == line_buf_tag_q);
-    // SRAM is always read regardless of line buffer hit to keep tag_rdata_ic1
-    // and data_rdata_ic1 valid (avoids stale-data hazards from held SRAM outputs).
-    // The line buffer still provides data injection in IC1 and bus suppression.
-    assign sram_lookup_ic0  = lookup_req_ic0;
-
-    // ---- IC0 -> IC1 pipeline registers ------------------------------------
-    always_ff @(posedge clk_i or negedge rst_ni) begin
-      if (!rst_ni) begin
-        line_buf_hit_ic1 <= 1'b0;
-        branch_ic1       <= 1'b0;
-      end else begin
-        line_buf_hit_ic1 <= line_buf_hit_ic0 & lookup_grant_ic0;
-        branch_ic1       <= branch_i & lookup_grant_ic0;
-      end
-    end
-
-    // ---- Capture condition ------------------------------------------------
-    assign line_buf_capture = lookup_valid_ic1 & tag_hit_ic1 & ~ecc_err_ic1 &
-                              branch_ic1 & ~line_buf_hit_ic1;
-
-    // ---- Invalidation condition -------------------------------------------
-    assign line_buf_inval = icache_inval_i | ~icache_enable_i |
-                            (ecc_err_ic1 & line_buf_hit_ic1);
-
-    // ---- Valid register ---------------------------------------------------
-    always_ff @(posedge clk_i or negedge rst_ni) begin
-      if (!rst_ni) begin
-        line_buf_valid_q <= 1'b0;
-      end else if (line_buf_inval) begin
-        line_buf_valid_q <= 1'b0;
-      end else if (line_buf_capture) begin
-        line_buf_valid_q <= 1'b1;
-      end
-    end
-
-    // ---- Data registers (tag, data+ECC, way) ------------------------------
-    if (ResetAll) begin : g_line_buf_ra
-      always_ff @(posedge clk_i or negedge rst_ni) begin
-        if (!rst_ni) begin
-          line_buf_tag_q      <= '0;
-          line_buf_data_ecc_q <= '0;
-          line_buf_way_q      <= '0;
-        end else if (line_buf_capture) begin
-          line_buf_tag_q      <= {lookup_addr_ic1, lookup_index_ic1};
-          line_buf_data_ecc_q <= hit_data_ecc_ic1;
-          line_buf_way_q      <= tag_match_ic1;
-        end
-      end
-    end else begin : g_line_buf_nr
-      always_ff @(posedge clk_i) begin
-        if (line_buf_capture) begin
-          line_buf_tag_q      <= {lookup_addr_ic1, lookup_index_ic1};
-          line_buf_data_ecc_q <= hit_data_ecc_ic1;
-          line_buf_way_q      <= tag_match_ic1;
-        end
-      end
-    end
-
-  end else begin : gen_no_line_buf
-
-    // Bypass: SRAM always sees the raw lookup request
-    assign sram_lookup_ic0  = lookup_req_ic0;
-    assign line_buf_hit_ic0 = 1'b0;
-    assign line_buf_hit_ic1 = 1'b0;
-    assign line_buf_way_q      = '0;
-    assign line_buf_data_ecc_q = '0;
-
-  end // gen_no_line_buf
-
   ////////////////
   // Assertions //
   ////////////////
@@ -1318,7 +1267,7 @@ module ibex_icache import ibex_pkg::*; #(
 
   // Lookups in the tag ram should always give a known result
   `ASSERT_KNOWN(TagHitKnown,     lookup_valid_ic1 & tag_hit_ic1)
-  `ASSERT_KNOWN(TagInvalidKnown, lookup_valid_ic1 & tag_invalid_ic1)
+  `ASSERT_KNOWN(TagInvalidKnown, lookup_valid_ic1 & ~line_buf_hit_ic1 & tag_invalid_ic1)
 
   // This is only used for the Yosys-based formal flow. Once we have working bind support, we can
   // get rid of it.
