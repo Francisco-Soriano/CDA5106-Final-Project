@@ -6,33 +6,35 @@ Central Processing Units (CPUs) perform massive amounts of operations but waste 
 
 # Repo structure
 CDA5106-Final-Project/
-│
-├── README.md
-├── LICENSE
-│
-├── ibex_edited/
-│   ├── ibex_icache.sv
-│   └── ... (other modified Ibex RTL files)
-│
-├── util/
-│   ├── icache_proxy_energy.py
-│   └── ... (analysis / helper scripts)
-│
-├── results/
-│   ├── ibex_simple_system_pcount.csv
-│   ├── icache_proxy_coremark.json
-│   └── ... (experiment outputs)
+│── README.md
+│── Makefile
+│── run.sh
+│── requirements.txt
 │
 ├── scripts/
-│   ├── run_experiments.sh
-│   └── ... (automation scripts)
+│   ├── icache_proxy_energy.py
+│   ├── parse_pcount.py
+│   └── utils.py
 │
-├── reports/
-│   ├── final_report.pdf
-│   └── ... (writeups, figures)
+├── data/
+│   ├── ibex_simple_system_pcount.csv
+│   └── icache_proxy_coremark.json
+│
+├── results/
+│   ├── baseline/
+│   ├── optimization_1/
+│   ├── optimization_2/
+│   ├── optimization_3/
+│   └── optimization_4/
+│
+├── ibex_edited/
+│   ├── rtl/
+│   │   └── ibex_icache.sv
+│   └── configs/
 │
 └── docs/
-    └── ... (images, diagrams, supporting material)
+    ├── report.md
+    └── figures/
 
 # Contact information
 Jordan Merek - jo045021@ucf.edu
