@@ -11,31 +11,34 @@ CDA5106-Final-Project/
 ├── LICENSE
 │
 ├── ibex_edited/
-│   ├── (modified RTL files, e.g., ibex_icache.sv)
-│   └── (other Ibex-related source files)
+│   ├── ibex_icache.sv
+│   └── ... (other modified Ibex RTL files)
 │
 ├── util/
 │   ├── icache_proxy_energy.py
-│   ├── (scripts for analysis / power proxy)
+│   └── ... (analysis / helper scripts)
 │
 ├── results/
 │   ├── ibex_simple_system_pcount.csv
 │   ├── icache_proxy_coremark.json
-│   └── (experiment outputs / metrics)
-│
-├── reports/
-│   ├── final_report.pdf
-│   └── (writeups, figures, explanations)
+│   └── ... (experiment outputs)
 │
 ├── scripts/
 │   ├── run_experiments.sh
-│   └── (automation / simulation scripts)
+│   └── ... (automation scripts)
+│
+├── reports/
+│   ├── final_report.pdf
+│   └── ... (writeups, figures)
 │
 └── docs/
-    └── (images, diagrams, supporting material)
+    └── ... (images, diagrams, supporting material)
 
 # Contact information
 Jordan Merek - jo045021@ucf.edu
+
 Alexander Garcia - al743857@ucf.edu
+
 Julian Vasquez - ju081309@ucf.edu
+
 Francisco Soriano - fr015568@ucf.edu
