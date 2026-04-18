@@ -4,7 +4,9 @@ CORE: Cache Optimization and Reasoning Agent for Power Efficiency
 # Abstract
 Central Processing Units (CPUs) perform massive amounts of operations but waste significant energy moving data, even with caches. Existing cache optimization work mainly focuses on performance (miss rate, latency) rather than power. CORE is an RTL optimization framekwork that uses off-chip LLMs and performance counters (reads, writes, evictions) as power proxies to track and reduce cache energy. In an Ibex instruction-cache case study, only some AI-generated optimizations were valid, but a prefetch-throttling approach achieved a 14.2% energy reduction with minimal performance impact, highlighting both the high potential and remaining unreliability of LLM-driven RTL design - specifcially in terms of power.
 
-# Repo structure
+## Repo Structure
+
+```
 CDA5106-Final-Project/
 │── README.md
 │── Makefile
@@ -35,6 +37,7 @@ CDA5106-Final-Project/
 └── docs/
     ├── report.md
     └── figures/
+```
 
 # Contact information
 Jordan Merek - jo045021@ucf.edu
