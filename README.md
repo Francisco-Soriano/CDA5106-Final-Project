@@ -15,7 +15,6 @@ Central Processing Units (CPUs) perform massive amounts of operations but waste 
 │   └── opt4_fb_threshold.sv  # Aggressive fill-buffer threshold (FB_THRESHOLD = NUM_FB - 3)
 ├── results/                  # Archived per-variant simulation results (JSON + logs)
 ├── docs/                     # Project documentation
-├── rtla-synthesis/           # Separate ALU synthesis experiments
 ├── run_all.sh                # Automated script: swap RTL → build → cosim → collect results
 ├── compare_results.py        # Load all result JSONs and print a comparison table
 └── README.md
