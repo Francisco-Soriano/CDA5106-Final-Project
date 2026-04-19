@@ -41,7 +41,7 @@ Additional reference documentation lives in [`ibex/doc/`](ibex/doc/):
 | Variant | Approach | Source | Co-sim | Proxy Energy Δ |
 |---------|----------|--------|--------|-----------------|
 | Baseline | Stock icache + perf counters | Manual | PASS | — |
-| Opt 1 | Same-line line buffer | LLM | PASS | ~0.00% |
+| Opt 1 | Same-line line buffer | LLM | PASS | -0.002% |
 | Opt 2 | Sequential line buffer + FB suppression | LLM | FAIL | — |
 | Opt 3 | Combined (all techniques) | LLM | FAIL | — |
 | Opt 4 | Aggressive `FB_THRESHOLD = NUM_FB - 3` | LLM (constrained) | PASS | **-14.2%** |
@@ -93,14 +93,14 @@ Proxy energy measured via `icache_proxy_energy.py` on CoreMark (weights: tag_rea
 | Variant | RR Proxy Energy | Δ RR | PLRU Proxy Energy | Δ PLRU | Co-sim Status |
 |---------|-----------------|------|-------------------|--------|---------------|
 | Baseline | 6,009,210 | — | 5,992,432 | — | PASS |
-| Opt 1: Line buffer | 6,009,087 | −0.00% | 5,992,312 | −0.00% | PASS |
+| Opt 1: Line buffer | 6,009,087 | −0.002% | 5,992,312 | −0.002% | PASS |
 | Opt 2: Seq. LB + FB supp. | — | — | — | — | FAIL |
 | Opt 3: Combined | — | — | — | — | FAIL |
 | Opt 4: FB threshold | 5,155,717 | **−14.20%** | 5,142,614 | **−14.18%** | PASS |
 
 Opts 2 and 3 fail Spike co-simulation verification, meaning the LLM-generated RTL changes introduced functional bugs that break instruction-level correctness.  This is a key finding: only 2 of 4 AI-generated optimizations produce functionally correct hardware.
 
-Of the passing variants, Opt 4 (aggressive `FB_THRESHOLD = NUM_FB - 3`) achieves the largest reduction: **~14% lower proxy energy** with a modest increase in fetch-wait cycles due to throttled speculative prefetches.  Opt 1 shows negligible improvement on the CoreMark workload because CoreMark's tight loops already exhibit high cache hit rates with few redundant same-line fetches.
+Of the passing variants, Opt 4 (aggressive `FB_THRESHOLD = NUM_FB - 3`) achieves the largest reduction: **~14% lower proxy energy** with a modest increase in fetch-wait cycles due to throttled speculative prefetches.  Opt 1 achieves a small but measurable reduction (~41 fewer SRAM reads per policy), confirming the line buffer mechanism works; the limited improvement is because CoreMark's tight loops already exhibit high cache hit rates with few redundant same-line fetches.
 
 ## Contact
 

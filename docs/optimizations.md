@@ -41,7 +41,7 @@ For sequential instruction fetches within the same 256-bit cache line (8-16 inst
 
 ### Actual Results
 
-Negligible improvement on CoreMark (~0.00% proxy energy reduction). CoreMark's tight inner loops already exhibit very high cache hit rates, and the instruction mix doesn't produce enough redundant same-line fetches for the buffer to suppress meaningful SRAM activity. The optimization would likely show more benefit on workloads with longer sequential instruction streams.
+A small but measurable proxy energy reduction on CoreMark: −0.002% for both RR and PLRU, corresponding to ~41 fewer tag/data SRAM reads per policy. This confirms the line buffer mechanism works — redundant same-line reads are being suppressed — but CoreMark's tight inner loops have very high cache hit rates with relatively few sequential same-line fetches, limiting the optimization's impact on this workload. The line buffer would likely show larger gains on workloads with longer sequential instruction streams or larger code footprints.
 
 ## Opt 2 — Sequential Line Buffer + Fill-Buffer Lookup Suppression
 
@@ -140,7 +140,7 @@ The ~14% proxy energy reduction comes from ~280K fewer SRAM reads per configurat
 | Variant | Approach | Co-sim | Proxy Energy Δ | Source |
 |---------|----------|--------|-----------------|--------|
 | Baseline | Stock + counters | PASS | — | Manual |
-| Opt 1 | Same-line line buffer | PASS | ~0.00% | LLM |
+| Opt 1 | Same-line line buffer | PASS | -0.002% | LLM |
 | Opt 2 | Seq. line buffer + FB suppression | FAIL | — | LLM |
 | Opt 3 | Combined (all techniques) | FAIL | — | LLM |
 | Opt 4 | Aggressive FB_THRESHOLD | PASS | **-14.2%** | LLM (human-constrained) |

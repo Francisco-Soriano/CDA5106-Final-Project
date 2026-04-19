@@ -202,7 +202,7 @@ Guidelines for interpreting LLM analysis output:
 
 2. **Complexity correlates with failure.** Opt 1 (single mechanism, moderate complexity) passed. Opts 2-3 (multiple interacting mechanisms) failed. The failure mode involves corner-case interactions between fill-buffer state, line-buffer state, and the existing cache FSM that are difficult to reason about from code alone.
 
-3. **Human constraints unlock the best results.** After the complex Opts 2-3 failed, re-engaging the pipeline with an explicit "small, non-destructive change" constraint produced Opt 4 — a single constant change that achieved 14.2% proxy energy reduction, far exceeding Opt 1's negligible improvement. The LLM correctly identified `FB_THRESHOLD` as a tuning knob, but only when steered away from adding new logic.
+3. **Human constraints unlock the best results.** After the complex Opts 2-3 failed, re-engaging the pipeline with an explicit "small, non-destructive change" constraint produced Opt 4 — a single constant change that achieved 14.2% proxy energy reduction, far exceeding Opt 1's modest improvement. The LLM correctly identified `FB_THRESHOLD` as a tuning knob, but only when steered away from adding new logic.
 
 4. **The pipeline is most valuable for analysis and constrained generation.** The Planner's baseline energy breakdown (identifying that tag+data reads are ~97% of proxy energy) correctly focused attention on the right optimization target. The analysis prompts produced useful hypotheses. Unconstrained Designer implementations introduced functional bugs, but when the scope was tightly constrained, the agent produced correct and effective RTL.
 
